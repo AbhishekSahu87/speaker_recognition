@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Recognition System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; }
+        .result { margin-top: 20px; }
+        audio { width: 100%; margin-top: 10px; }
+        #waveform { width: 100%; height: 100px; background: #f0f0f0; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Speaker Recognition System</h1>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5>Upload Audio File</h5>
+            </div>
+            <div class="card-body">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input class="form-control" type="file" id="audioFile" accept=".wav,.mp3" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Recognize Speaker</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="resultContainer" class="card mt-4 d-none">
+            <div class="card-header">
+                <h5>Recognition Result</h5>
+            </div>
+            <div class="card-body">
+                <div id="waveform"></div>
+                <audio id="audioPlayer" controls></audio>
+                <div class="result">
+                    <p><strong>Identified Speaker:</strong> <span id="speakerResult"></span></p>
+                    <p><strong>Confidence:</strong> <span id="confidenceResult"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>System Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="static/noise_robustness.png" class="img-fluid" alt="Noise Robustness">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="static/speaker_recognition_cnn_training_history.png" class="img-fluid" alt="Training History">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js"></script>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('audioFile');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('speakerResult').textContent = data.speaker;
+                    document.getElementById('confidenceResult').textContent = data.confidence;
+                    
+                    // Set up audio player and waveform
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    const audioUrl = `static/uploads/${data.audio_file}`;
+                    audioPlayer.src = audioUrl;
+                    
+                    // Initialize wavesurfer
+                    if (window.wavesurfer) {
+                        window.wavesurfer.destroy();
+                    }
+                    
+                    window.wavesurfer = WaveSurfer.create({
+                        container: '#waveform',
+                        waveColor: '#4a6fa5',
+                        progressColor: '#2c3e50',
+                        cursorColor: '#1a1a1a',
+                        barWidth: 2,
+                        barRadius: 3,
+                        cursorWidth: 1,
+                        height: 80,
+                        barGap: 2
+                    });
+                    
+                    wavesurfer.load(audioUrl);
+                    document.getElementById('resultContainer').classList.remove('d-none');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during processing');
+            });
+        });
+    </script>
+</body>
+</html>
