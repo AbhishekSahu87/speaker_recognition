@@ -1,16 +1,16 @@
-🔊 Speaker Recognition System
+ Speaker Recognition System
 A robust, noise-resistant Speaker Recognition System designed using a CNN-Attention model. It accurately identifies speakers in real-time from short audio clips, achieving over 75% accuracy in noisy environments. The system generalizes well to new speakers with minimal training data.
 
 Key Features:
-🎯 Real-time speaker identification
+ Real-time speaker identification
 
-🧠 MFCC-based feature extraction combined with deep learning
+ MFCC-based feature extraction combined with deep learning
 
-🛡️ Explainable AI for enhanced security and trust
+ Explainable AI for enhanced security and trust
 
-🗣️ Applications in voice assistants and secure access systems
+ Applications in voice assistants and secure access systems
 
-🛠️ Setting Up the Speaker Recognition System (Windows/Linux)
+ Setting Up the Speaker Recognition System (Windows/Linux)
 Follow this step-by-step guide to set up the system on your laptop:
 
 <!-- You can continue your setup steps here -->
