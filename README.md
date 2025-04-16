@@ -111,12 +111,6 @@ python test.py  # Or use the Jupyter notebook for analysis
 ```bash
 python app.py
 ```
-
-For production:
-```bash
-gunicorn --bind 0.0.0.0:5000 --timeout 600 app:app
-```
-
 ---
 
 ### **10. Access Application**
