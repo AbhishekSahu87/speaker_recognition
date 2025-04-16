@@ -1,12 +1,19 @@
-# Speaker Recognition System
-Speaker Recognition System - Develop a noise-resistant speaker recognition system using a CNN-Attention model that accurately identifies
-speakers in real-time from short audio clips, maintains greater than 75% accuracy in noisy environments,
-and generalizes to new speakers with minimal training data. Combines MFCC feature extraction,
-deep learning, and explainable AI for security and voice assistant applications.
+🔊 Speaker Recognition System
+A robust, noise-resistant Speaker Recognition System designed using a CNN-Attention model. It accurately identifies speakers in real-time from short audio clips, achieving over 75% accuracy in noisy environments. The system generalizes well to new speakers with minimal training data.
 
-# Setting Up the Speaker Recognition System on a Windows/Linux Laptop
+Key Features:
+🎯 Real-time speaker identification
 
-Here's a complete step-by-step guide to set up the Speaker Recognition System:
+🧠 MFCC-based feature extraction combined with deep learning
+
+🛡️ Explainable AI for enhanced security and trust
+
+🗣️ Applications in voice assistants and secure access systems
+
+🛠️ Setting Up the Speaker Recognition System (Windows/Linux)
+Follow this step-by-step guide to set up the system on your laptop:
+
+<!-- You can continue your setup steps here -->
 
 ---
 
@@ -42,7 +49,7 @@ speaker_recognition/
 
 ### **3. Set Up Virtual Environment**
 #### **Using venv**:
-```bash
+```~bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
