@@ -6,7 +6,7 @@ deep learning, and explainable AI for security and voice assistant applications.
 
 # Setting Up the Speaker Recognition System on a Windows/Linux Laptop
 
-Here's a complete step-by-step guide to set up the Speaker Recognition System from GitHub:
+Here's a complete step-by-step guide to set up the Speaker Recognition System:
 
 ---
 
@@ -22,8 +22,23 @@ Here's a complete step-by-step guide to set up the Speaker Recognition System fr
 git clone https://github.com/AbhishekSahu87/speaker_recognition.git
 cd speaker_recognition
 ```
-
 ---
+This folder structure and files should be there if not created it 
+```
+speaker_recognition/
+├── data/
+│   ├── raw/                # Raw audio files
+│   ├── processed/          # Processed features
+│   └── splits/             # Train/test splits
+├── models/                 # Saved models
+├── static/                 # Web app static files
+├── templates/              # Web app HTML templates
+├── feature_extraction.py   # Feature extraction code
+├── model_training.py       # Model training code
+├── evaluation.py           # Evaluation code
+├── app.py                  # Flask web application
+└── requirements.txt        # Project dependencies
+```
 
 ### **3. Set Up Virtual Environment**
 #### **Using venv**:
